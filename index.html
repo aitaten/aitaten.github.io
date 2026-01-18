@@ -3,124 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aitor Atencia | Scientific Researcher</title>
+    <title>Dr. Aitor Atencia | Scientific Researcher</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
-        body { font-family: 'Source Sans Pro', sans-serif; background: #e5e7eb; overflow: hidden; }
+        body { font-family: 'Source Sans Pro', sans-serif; background: #f3f4f6; }
         
-        /* Panel Switching Logic */
         .panel { display: none; }
-        .panel.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .panel.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 
-        .nav-link.active { background: #3b82f6; color: white !important; }
-        .expertise-img { height: 160px; object-fit: cover; width: 100%; border-radius: 8px; }
+        .nav-link.active { background: #2563eb; color: white !important; transform: translateX(5px); }
+        /* Fix for "achatada" image - maintains aspect ratio */
+        .profile-img { object-fit: cover; object-position: center; }
+        .expertise-img { height: 160px; object-fit: cover; width: 100%; border-radius: 8px; border: 1px solid #e5e7eb; }
+        
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex items-center justify-center p-2 md:p-6">
 
-    <div class="w-full max-w-5xl flex flex-col md:flex-row gap-4 h-full md:h-[85vh]">
+    <div class="w-full max-w-6xl flex flex-col md:flex-row gap-6 h-full md:h-[90vh]">
         
-        <nav id="nav" class="bg-white rounded-2xl shadow-xl p-4 flex md:flex-col justify-center gap-4 text-slate-400">
-            <button onclick="showPanel('me', this)" class="nav-link active p-4 rounded-xl hover:text-blue-500 transition-all flex flex-col items-center gap-1">
-                <i class="fa-solid fa-user text-2xl"></i><span class="text-[10px] uppercase font-bold">Me</span>
+        <nav id="nav" class="bg-slate-900 rounded-3xl shadow-2xl p-4 flex md:flex-col justify-center gap-2 text-slate-400 z-10">
+            <button onclick="showPanel('me', this)" class="nav-link active p-4 rounded-2xl hover:text-white transition-all flex flex-col items-center gap-1 group">
+                <i class="fa-solid fa-user text-xl group-hover:scale-110 transition-transform"></i><span class="text-[9px] uppercase font-bold">Me</span>
             </button>
-            <button onclick="showPanel('work', this)" class="nav-link p-4 rounded-xl hover:text-blue-500 transition-all flex flex-col items-center gap-1">
-                <i class="fa-solid fa-folder-open text-2xl"></i><span class="text-[10px] uppercase font-bold">Work</span>
+            <button onclick="showPanel('work', this)" class="nav-link p-4 rounded-2xl hover:text-white transition-all flex flex-col items-center gap-1 group">
+                <i class="fa-solid fa-flask-vial text-xl group-hover:scale-110 transition-transform"></i><span class="text-[9px] uppercase font-bold">Expertise</span>
             </button>
-            <button onclick="showPanel('teaching', this)" class="nav-link p-4 rounded-xl hover:text-blue-500 transition-all flex flex-col items-center gap-1">
-                <i class="fa-solid fa-chalkboard-user text-2xl"></i><span class="text-[10px] uppercase font-bold">Teaching</span>
+            <button onclick="showPanel('teaching', this)" class="nav-link p-4 rounded-2xl hover:text-white transition-all flex flex-col items-center gap-1 group">
+                <i class="fa-solid fa-code text-xl group-hover:scale-110 transition-transform"></i><span class="text-[9px] uppercase font-bold">Teaching</span>
             </button>
-            <button onclick="showPanel('cv', this)" class="nav-link p-4 rounded-xl hover:text-blue-500 transition-all flex flex-col items-center gap-1">
-                <i class="fa-solid fa-file-lines text-2xl"></i><span class="text-[10px] uppercase font-bold">CV</span>
+            <button onclick="showPanel('cv', this)" class="nav-link p-4 rounded-2xl hover:text-white transition-all flex flex-col items-center gap-1 group">
+                <i class="fa-solid fa-file-invoice text-xl group-hover:scale-110 transition-transform"></i><span class="text-[9px] uppercase font-bold">Full CV</span>
             </button>
         </nav>
 
-        <div class="flex-1 bg-white rounded-3xl shadow-2xl overflow-y-auto relative p-8 md:p-12">
+        <div class="flex-1 bg-white rounded-[2.5rem] shadow-2xl overflow-y-auto no-scrollbar relative border border-slate-100">
             
-            <article id="me" class="panel active space-y-6 text-center md:text-left">
-                <div class="flex flex-col md:flex-row items-center gap-8 py-10">
-                    <img src="assets/me.png" alt="Aitor Atencia" class="w-48 h-48 rounded-full shadow-lg border-4 border-white ring-2 ring-blue-500">
-                    <div>
-                        <h1 class="text-5xl font-bold text-slate-900">Aitor Atencia</h1>
-                        <p class="text-2xl text-blue-600 font-light italic">Scientific Researcher @ GeoSphere Austria</p>
-                        <div class="flex gap-4 mt-6 justify-center md:justify-start">
-                             <a href="mailto:aitor.atencia@geosphere.at" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-envelope text-2xl"></i></a>
-                             <a href="https://scholar.google.es/citations?user=OC1PYjMAAAAJ" class="text-slate-400 hover:text-blue-600"><i class="fa-brands fa-google text-2xl"></i></a>
-                             <a href="https://github.com/aitaten" class="text-slate-400 hover:text-blue-600"><i class="fa-brands fa-github text-2xl"></i></a>
+            <article id="me" class="panel active p-8 md:p-16 space-y-12">
+                <div class="flex flex-col md:flex-row items-center gap-12 border-b pb-12">
+                    <div class="relative">
+                        <img src="assets/me.png" alt="Aitor Atencia" class="profile-img w-56 h-56 rounded-full shadow-2xl ring-8 ring-slate-50 border-4 border-white">
+                        <div class="absolute bottom-4 right-4 bg-green-500 w-6 h-6 rounded-full border-4 border-white"></div>
+                    </div>
+                    <div class="text-center md:text-left space-y-4">
+                        <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight">Aitor Atencia, <span class="text-blue-600">Ph.D.</span></h1>
+                        <p class="text-2xl text-slate-500 font-light italic leading-tight">Scientific Researcher @ GeoSphere Austria</p>
+                        <div class="flex gap-4 justify-center md:justify-start pt-2">
+                             <a href="mailto:aitor.atencia@geosphere.at" class="bg-slate-100 p-3 rounded-full hover:bg-blue-600 hover:text-white transition-all"><i class="fa-solid fa-envelope text-xl"></i></a>
+                             <a href="https://scholar.google.es/citations?user=OC1PYjMAAAAJ" class="bg-slate-100 p-3 rounded-full hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-google text-xl"></i></a>
+                             <a href="https://github.com/aitaten" class="bg-slate-100 p-3 rounded-full hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-github text-xl"></i></a>
                         </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-4">
+                        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">Current Focus</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Leading developments in <strong>Nowcasting</strong> and very short-range forecasting. I specialize in integrating NWP with probabilistic radar analysis to improve early warning systems for high-impact weather in Austria.
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">Global Roles</h3>
+                        <ul class="text-sm space-y-2 text-slate-500">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> WMO/OSCAR Point of Contact</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> EUMETSAT NWC-SAF Steering Group</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> EUMETNET Nowcasting Expert Team</li>
+                        </ul>
                     </div>
                 </div>
             </article>
 
-            <article id="work" class="panel space-y-8">
+            <article id="work" class="panel p-8 md:p-16 space-y-8">
                 <h2 class="text-3xl font-bold border-b pb-4">Scientific Expertise</h2>
-                <p class="text-slate-600 leading-relaxed">
-                    I am a Research Scientist at <strong>GeoSphere Austria</strong> (Formerly ZAMG). My expertise focuses on bridging the gap between numerical weather prediction and real-time operational needs.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="space-y-4">
-                        <h3 class="font-bold text-center h-12 flex items-center justify-center">Predictability & Chaos Theory</h3>
-                        <img src="assets/ANAL_FORWARD_3D_t.gif" class="expertise-img shadow-md hover:scale-105 transition-transform" alt="Chaos Theory">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+                    <div class="group">
+                        <h3 class="font-bold text-center mb-4 text-slate-700">Predictability & Chaos Theory</h3>
+                        <img src="assets/ANAL_FORWARD_3D_t.gif" class="expertise-img group-hover:shadow-lg transition-all" alt="Chaos">
                     </div>
-                    <div class="space-y-4">
-                        <h3 class="font-bold text-center h-12 flex items-center justify-center">Probabilistic Nowcasting & Verification</h3>
-                        <img src="assets/PLOT_PROB_MAP.gif" class="expertise-img shadow-md hover:scale-105 transition-transform" alt="Nowcasting">
+                    <div class="group">
+                        <h3 class="font-bold text-center mb-4 text-slate-700">Probabilistic Nowcasting</h3>
+                        <img src="assets/PLOT_PROB_MAP.gif" class="expertise-img group-hover:shadow-lg transition-all" alt="Nowcasting">
                     </div>
-                    <div class="space-y-4">
-                        <h3 class="font-bold text-center h-12 flex items-center justify-center">Hydrometeorology & Flash-flood Forecasting</h3>
-                        <img src="assets/hydrograph.001.png" class="expertise-img shadow-md hover:scale-105 transition-transform" alt="Hydrometeorology">
+                    <div class="group">
+                        <h3 class="font-bold text-center mb-4 text-slate-700">Flash-flood Forecasting</h3>
+                        <img src="assets/hydrograph.001.png" class="expertise-img group-hover:shadow-lg transition-all" alt="Hydro">
                     </div>
                 </div>
             </article>
 
-            <article id="teaching" class="panel space-y-8">
-                <h2 class="text-3xl font-bold border-b pb-4">Teaching AI Lab</h2>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="md:col-span-3 space-y-6">
-                        <div class="flex gap-6 p-4 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">
-                            <div class="w-32 h-24 bg-slate-100 rounded-lg overflow-hidden shrink-0">
-                                <img src="assets/ANAL_FORWARD_3D_t.gif" class="w-full h-full object-cover">
-                            </div>
-                            <div class="space-y-2">
-                                <h4 class="font-bold text-blue-700">Seamless Forecast Programs</h4>
-                                <p class="text-sm text-slate-500">A series of notebooks exploring the transition from radar nowcasting to NWP.</p>
-                                <a href="https://colab.research.google.com/github/aitaten/aitaten.github.io/blob/main/teaching/seamless.ipynb" class="inline-block"><img src="https://colab.research.google.com/assets/colab-badge.svg"></a>
-                            </div>
+            <article id="teaching" class="panel p-8 md:p-16 space-y-8">
+                <h2 class="text-3xl font-bold border-b pb-4 italic">Teaching AI Lab</h2>
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="flex-1 space-y-6">
+                        <div class="bg-slate-50 border border-dashed border-slate-300 p-8 rounded-3xl text-center">
+                            <i class="fa-solid fa-microchip text-4xl text-slate-200 mb-4"></i>
+                            <h4 class="font-bold text-slate-400 uppercase tracking-widest text-sm">Notebooks Coming Soon</h4>
+                            <p class="text-xs text-slate-400 mt-2">Currently developing interactive modules on Precipitation Analysis and Lagrangian Ensemble techniques.</p>
                         </div>
-                        
-                        </div>
-                    <div class="hidden md:block md:col-span-1 text-xs text-slate-400 space-y-4 border-l pl-6">
-                        <p class="font-bold uppercase tracking-widest text-slate-500 text-[10px]">Note</p>
-                        <p>All programs are open-source and hosted on Google Colab for real-time execution. Figures and data provided by GeoSphere Austria.</p>
+                    </div>
+                    <div class="w-full md:w-48 text-[11px] text-slate-400 uppercase tracking-widest space-y-4 border-t md:border-t-0 md:border-l pt-6 md:pt-0 md:pl-6">
+                        <p class="font-bold text-blue-600">Objective</p>
+                        <p class="leading-relaxed">Providing open access to complex meteorological algorithms through Google Colab.</p>
                     </div>
                 </div>
             </article>
 
-            <article id="cv" class="panel space-y-8">
-                 <div class="flex justify-between items-center border-b pb-4">
-                    <h2 class="text-3xl font-bold">Curriculum Vitae</h2>
-                    <a href="mailto:aitor.atencia@geosphere.at" class="text-blue-600 text-sm font-bold">Request Full PDF <i class="fa-solid fa-download ml-1"></i></a>
+            <article id="cv" class="panel p-8 md:p-16 space-y-12">
+                <div class="flex flex-col md:flex-row justify-between items-baseline gap-4 border-b pb-6">
+                    <h2 class="text-4xl font-extrabold tracking-tighter">Curriculum Vitae</h2>
+                    <p class="text-slate-400 text-sm">Last updated: 2026</p>
                 </div>
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="font-bold text-blue-700 uppercase text-xs tracking-widest mb-2">Education</h3>
-                        <ul class="text-sm space-y-1 text-slate-600">
-                            <li><strong>Ph.D. in Physics (Meteorology)</strong>, Universitat de Barcelona (2011)</li>
-                            <li><strong>Postdoctoral Fellowship</strong>, McGill University (2011–2014)</li>
-                        </ul>
+
+                <section class="space-y-4">
+                    <h3 class="text-xl font-bold text-blue-700 border-l-4 border-blue-700 pl-4">Education</h3>
+                    <ul class="space-y-3 text-slate-600 ml-5">
+                        <li><strong>Postdoctoral Fellowship</strong>, Atmospheric and Oceanic Sciences, McGill University (2011–2014)</li>
+                        <li><strong>Ph.D. in Physics (Meteorology)</strong>, Universitat de Barcelona (2011)</li>
+                        <li><strong>European Master’s in Meteorology</strong>, Universitat de Barcelona (2007)</li>
+                        <li><strong>Degree in Physics</strong>, Universitat de Barcelona (2006)</li>
+                    </ul>
+                </section>
+
+                <section class="space-y-4">
+                    <h3 class="text-xl font-bold text-blue-700 border-l-4 border-blue-700 pl-4">Employment</h3>
+                    <div class="space-y-6 ml-5">
+                        <div class="flex justify-between flex-col md:flex-row">
+                            <span><strong>Scientific Researcher</strong>, PostProcessing and AI, GeoSphere Austria</span>
+                            <span class="text-sm font-bold text-slate-400">2026 – Present</span>
+                        </div>
+                        <div class="flex justify-between flex-col md:flex-row">
+                            <span><strong>Head of Nowcasting Competence Unit</strong>, GeoSphere Austria</span>
+                            <span class="text-sm font-bold text-slate-400">2023 – 2025</span>
+                        </div>
+                        <div class="flex justify-between flex-col md:flex-row">
+                            <span><strong>Scientific Researcher</strong>, Model Development, ZAMG</span>
+                            <span class="text-sm font-bold text-slate-400">2016 – 2023</span>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-blue-700 uppercase text-xs tracking-widest mb-2">Selected Roles</h3>
-                        <ul class="text-sm space-y-1 text-slate-600">
-                            <li><strong>WMO/OSCAR Point of Contact</strong> for Nowcasting (2023-Pres)</li>
-                            <li><strong>Head of Nowcasting</strong>, GeoSphere Austria (2023-2025)</li>
-                        </ul>
-                    </div>
-                </div>
+                </section>
+
+                <section class="space-y-4">
+                    <h3 class="text-xl font-bold text-blue-700 border-l-4 border-blue-700 pl-4">Major Research Projects</h3>
+                    <ul class="space-y-3 text-slate-600 ml-5">
+                        <li><strong>EUMETNET Nowcasting Programme Phase 2</strong> (2024 – 2029): Focus on improving nowcasting applications across Europe.</li>
+                        <li><strong>MEDEWSA</strong> (2023 – 2026): Early Warning Systems against natural hazards in the Mediterranean.</li>
+                    </ul>
+                </section>
             </article>
 
         </div>
@@ -128,15 +162,12 @@
 
     <script>
         function showPanel(id, btn) {
-            // Hide all panels
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-            // Remove active style from all buttons
             document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
-            
-            // Show selected panel
             document.getElementById(id).classList.add('active');
-            // Set button to active
             btn.classList.add('active');
+            // Reset scroll position to top when switching panels
+            document.querySelector('.overflow-y-auto').scrollTop = 0;
         }
     </script>
 </body>
